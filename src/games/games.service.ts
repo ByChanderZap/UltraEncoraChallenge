@@ -43,4 +43,10 @@ export class GamesService {
   getGamesByPublisherName(name: string): Promise<Game> {
     return this.gameRepository.getGamesByPublisherName(name);
   }
+
+  removeOldGames(): Promise<void> {
+    this.gameRepository.updatePricesBetween12and18Monts();
+    // this.gameRepository.removeWhenOlderThan18Months();
+    return;
+  }
 }

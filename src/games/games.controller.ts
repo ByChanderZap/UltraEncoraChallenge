@@ -49,4 +49,9 @@ export class GamesController {
   getGamesByPublisherName(@Param('name') name: string): Promise<Game> {
     return this.gamesService.getGamesByPublisherName(name);
   }
+
+  @Post('/cleanup')
+  cleanup(): Promise<void> {
+    return this.gamesService.removeOldGames();
+  }
 }

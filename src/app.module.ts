@@ -15,12 +15,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const isProduction = configService.get('STAGE') === 'prod';
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        console.log(configService.get('DB_HOST'));
-        console.log(configService.get('DB_USERNAME'));
-        console.log(configService.get('DB_PASSWORD'));
-        console.log(configService.get('DB_DATABASE'));
-        console.log(configService.get('DB_PORT'));
 
         return {
           ssl: isProduction ? { rejectUnauthorized: false } : null,
