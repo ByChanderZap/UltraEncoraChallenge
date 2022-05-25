@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  dev:
+    container_name: nest_games
+    image: nestjs-videogames
+    build:
+      context: .
+      target: builder
+      dockerfile: ./dockerfile
+    command: yarn start:dev
+    ports:
+      - 3000:3000
+    networks:
+      - nestjs-network
+    restart: unless-stopped
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    container_name: db
+    image: 'postgres:latest'
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=gamecenter
+    networks:
+      - nestjs-network
+networks:
+  nestjs-network:
+    driver: 'bridge'
