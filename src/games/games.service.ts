@@ -40,8 +40,8 @@ export class GamesService {
     return this.gameRepository.getGames(filterDto);
   }
 
-  getGamesByPublisherName(name: string): Promise<Game> {
-    return this.gameRepository.getGamesByPublisherName(name);
+  getPublisherDataByName(name: string): Promise<Game> {
+    return this.gameRepository.getPublisherDataByName(name);
   }
 
   removeOldGames(): Promise<void> {

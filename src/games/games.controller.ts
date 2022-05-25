@@ -46,8 +46,8 @@ export class GamesController {
   }
 
   @Get('/name/:name')
-  getGamesByPublisherName(@Param('name') name: string): Promise<Game> {
-    return this.gamesService.getGamesByPublisherName(name);
+  getPublisherDataByName(@Param('name') name: string): Promise<Game> {
+    return this.gamesService.getPublisherDataByName(name);
   }
 
   @Post('/cleanup')

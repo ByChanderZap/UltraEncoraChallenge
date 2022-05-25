@@ -41,15 +41,14 @@ export class GameRepository extends Repository<Game> {
     return games;
   }
 
-  async getGamesByPublisherName(name: string): Promise<Game> {
+  async getPublisherDataByName(name: string): Promise<Game> {
     const query = this.createQueryBuilder('game');
+    query.select(['"publisher".*']);
     query.innerJoin('game.publisher', 'publisher');
-
-    query.andWhere('LOWER(publisher.name) LIKE :name', {
+    query.where('LOWER(publisher.name) LIKE :name', {
       name: `%${name.toLowerCase()}%`,
     });
-
-    const games = await query.getOne();
+    const games = await query.getRawOne();
     return games;
   }
 
