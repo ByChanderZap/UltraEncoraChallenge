@@ -44,4 +44,9 @@ export class GamesController {
   ): Promise<Game> {
     return this.gamesService.updateGame(id, updateGameDto);
   }
+
+  @Get('/name/:name')
+  getGamesByPublisherName(@Param('name') name: string): Promise<Game> {
+    return this.gamesService.getGamesByPublisherName(name);
+  }
 }

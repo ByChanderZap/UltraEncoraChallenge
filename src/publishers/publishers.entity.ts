@@ -1,35 +1,27 @@
-import { Publisher } from 'src/publishers/publishers.entity';
+import { Game } from 'src/games/game.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class Game {
+export class Publisher {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  title: string;
+  name: string;
 
   @Column()
-  price: number;
+  siret: number;
 
-  @ManyToOne((_type) => Publisher, (publisher) => publisher.games, {
-    eager: true,
-  })
-  publisher: Publisher;
-
-  @Column('simple-array')
-  tags: string[];
-
-  @Column({ type: 'date' })
-  releaseDate: string;
+  @Column()
+  phone: string;
 
   @DeleteDateColumn()
   deletedAt?: Date;
@@ -39,4 +31,7 @@ export class Game {
 
   @UpdateDateColumn()
   UpdatedAt?: Date;
+
+  @OneToMany((_type) => Game, (game) => game.publisher, { eager: false })
+  games: Game[];
 }

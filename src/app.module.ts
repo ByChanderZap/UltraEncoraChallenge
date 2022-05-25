@@ -12,7 +12,7 @@ import { PublishersModule } from './publishers/publishers.module';
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'game-center',
+      database: 'gamecenter',
       autoLoadEntities: true,
       synchronize: true,
     }),
